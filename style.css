@@ -1,0 +1,109 @@
+*{
+    list-style: none;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: rgb(94, 145, 255);
+    width: 100vw;
+    display: flex;
+    /* justify-content: center; */
+}
+#contracts{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.contract{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 30px;
+    transform-style: preserve-3d;
+	transition: transform .2s ease, opacity .2s ease;
+}
+.contract.deleted{
+    opacity: 0;
+}
+.contract-main{
+    display: flex;
+    /* justify-content: space-around; */
+}
+.checkbox{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #eeeeff3d;
+}
+.contract-main, .contract-edit{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.info{
+    margin-right: auto;
+    width: 70%;
+}
+.info>h2{
+    font-size: 1.5rem;
+}
+
+.info, .checkbox{
+    /* margin: auto; */
+
+}
+.contract-edit{
+    transform: rotateX(180deg);
+    background-color: white;
+}
+.contract.flip{
+    transform: rotateX(180deg);
+}
+.contracts-header{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.contracts-container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    margin: auto;
+    margin-top: 100px;
+}
+.contract:nth-child(odd) {
+
+}
+.contract:not(:last-child){
+    border-bottom: 1px solid #eee;
+
+}
+
+.contracts-add{
+    margin: auto;
+}
+
+.floataction{
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    transition: all 1s ease;
+}
+.floataction:hover{
+    cursor: pointer;
+    opacity: .3;
+    transform: scale(90%);
+
+}
+
+.editIcon:hover, .deleteIcon:hover{
+    transform: scale(110%);
+    cursor: pointer;
+}

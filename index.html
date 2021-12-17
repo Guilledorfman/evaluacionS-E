@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Evaluacion</title>
+</head>
+<body>
+    <div class="contracts-container">
+
+        <div class="contracts-header">
+            <div class="type">
+                <h2>Tipo</h2>
+                <select id="types" name="types">
+                    <option disabled>Filtrar</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+                <div class="filterTagsCont">
+                    <ul id="filterTags">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="estado">
+                <h2>estado</h2>
+                <span class="material-icons">favorite</span>
+
+            </div>
+        </div>
+
+        <ul id="contracts">
+            <li>
+                <!-- <div class="contract">
+                    <div class="contract-main">
+                        <div class="info">
+                            <h2>Nombre</h2>
+                            <i>A</i>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        </div>
+                        <checkbox>
+                            <input type="checkbox">
+                            <span class="material-icons">edit</span>
+                            <span class="material-icons">delete</span>
+                        </checkbox>
+                    </div>
+
+                    <div class="contract-edit">
+                        <div class="info">
+                            <input type="text" value="Nombre" placeholder="Nombre"></input>
+                            <select id="inputType" name="types">
+                                <option value="A" selected="selected">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                            </select>
+                            <input type="text" value="Lorem ipsum dolor sit amet consectetur, adipisicing elit." placeholder="Lorem ipsum dolor sit amet consectetur, adipisicing elit."></input>
+                        </div>
+                    </div>
+                </div> -->
+
+            </li>
+
+        </ul>
+
+        
+        <div class="contracts-add">
+                <input type="text" id="inputName" placeholder="Nombre...">
+                <select id="inputType" name="types">
+                    <option value="" selected="selected">Type</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+                <input type="text" id="inputInfo" placeholder="Info...">
+                <button id="addContract">Add</button>
+        </div>
+    </div>
+
+    <img class="floataction" src="./floataction.png" alt="">
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
