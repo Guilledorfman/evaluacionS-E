@@ -127,7 +127,7 @@ function renderContracts(arrayRender){
         })
 
         let okItem = document.createElement('button');
-        okItem.classList.add('ok')
+        okItem.classList.add('ok', 'btn', 'btn-success')
         okItem.id = `ok-${contract.id}`
         okItem.innerText = `Ok`
 
@@ -136,7 +136,7 @@ function renderContracts(arrayRender){
         })
 
         let cancelItem = document.createElement('button');
-        cancelItem.classList.add('cancel')
+        cancelItem.classList.add('cancel','btn','btn-dark')
         cancelItem.id = `cancel-${contract.id}`
         cancelItem.innerText = `cancel`
 
@@ -197,8 +197,13 @@ function addContract(name, type, info){
     if( !name.value.trim() == '' && !type.value.trim() == '' && !info.value.trim() == ''){
         contracts.push(new Contract (name.value, type.value, info.value, idCount, getDate()));
         clearInputs();
+        $(`#contracts-add`).slideUp()
+        $(`#addContractBtn`).removeClass('rotate')
     }else{
-        console.log('mal');
+        $(`.alert`).fadeIn();
+        setTimeout(()=>{
+            $(`.alert`).fadeOut();
+        },2000)
     }
 
 }
@@ -220,19 +225,37 @@ function acceptEditContract(e){
   
 
     if(!$(`#inputName-${e}`).val().trim() == '' && !$(`#inputType-${e}`).val().trim() == '' && !$(`#inputInfo-${e}`).val().trim() == ''){
+        
+    if (
+        $(`#inputName-${e}`).val() == contractToEdit.name && 
+        $(`#inputType-${e}`).val() == contractToEdit.type &&
+        $(`#inputInfo-${e}`).val() == contractToEdit.info
+    ){
+        $(`#contract-${e}`).removeClass('flip')
 
+    }else{
         contractToEdit.name =  $(`#inputName-${e}`).val();
         contractToEdit.type =  $(`#inputType-${e}`).val();
         contractToEdit.info =  $(`#inputInfo-${e}`).val();
         contractToEdit.edited = getDate();
-    
-        
         setTimeout(()=>{
             clearFiltersFn()
             renderContracts(contracts)
         },200);
         $(`#contract-${e}`).removeClass('flip');
     }
+    }else{
+        $(`.alert`).fadeIn();
+        setTimeout(()=>{
+            $(`.alert`).fadeOut();
+        },2000)
+    } 
+
+ 
+
+
+    
+        
 
 }
 
@@ -319,3 +342,25 @@ function getDate(){
     return(`${day}-${month}-${year} at ${hour}:${minutes}`);
 }
 renderContracts(contracts)
+
+let addingContract = false;
+
+$(`#addContractBtn`).click(()=>{
+    if(addingContract){
+        $(`#contracts-add`).slideUp()
+        $(`#addContractBtn`).removeClass('rotate')
+        setTimeout(()=>{
+            addingContract = false;
+
+        },300)
+    }else{
+        addingContract = true;
+        $(`#addContractBtn`).addClass('rotate')
+        $(`#contracts-add`).slideDown()
+
+    }
+})
+
+setTimeout(()=>{
+
+},1000)

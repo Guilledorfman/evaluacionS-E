@@ -8,6 +8,12 @@ body{
     display: flex;
     flex-direction: column;
 }
+.alert{
+    width: 100%;
+    z-index: 50000;
+    position: fixed;
+    display: none;
+}
 
 nav{
     height: 200px;
@@ -149,7 +155,7 @@ nav>img{
     padding: 30px;
 }
 .ok-cont>button{
-    width: 50px;
+    /* width: 50px; */
     outline: none;
     border: none;
 }
@@ -209,21 +215,35 @@ nav>img{
     width: 100%;
     margin: auto;
 }
-.contract:nth-child(odd) {
-
-}
-.contract:not(:last-child){
-    border-bottom: 1px solid #eee;
-
-}
 
 #contracts-add{
+    background-color: red;
     display: flex;
+    display: none;
     flex-direction:column;
     justify-content: space-around;
     height: 300px;
     width: 80%;
     margin: auto;
+}
+#addContractBtn{
+    margin: auto;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    outline: none;
+    border:none;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .3s ease, background-color .3s ease;
+}
+
+#addContractBtn.rotate{
+    transform: rotate(45deg);
+    background-color: black;
 }
 
 .floataction{
