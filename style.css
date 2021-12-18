@@ -4,16 +4,31 @@
 }
 
 body{
-    background-color: rgb(94, 145, 255);
     width: 100vw;
     display: flex;
-    /* justify-content: center; */
+    flex-direction: column;
 }
+
+nav{
+    height: 200px;
+    background-image: url("https://media.istockphoto.com/photos/business-district-building-street-office-building-picture-id1196323722?k=20&m=1196323722&s=612x612&w=0&h=E46NKnSKIlK0xT4xg9fh0cayFd04a-7yWIMiNizDkgA=");
+    background-size: cover;
+}
+
+nav>img{    
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+
 #contracts{
     padding-left: 20px;
     padding-right: 20px;
 }
 .contract{
+    border-left: 5px solid #008BE1;
+    padding-left: 10px;
+    background-color: #eeeeffb0;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -37,8 +52,9 @@ body{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: #eeeeff3d;
+    background-color: #eeeeff;
 }
+
 .contract-main, .contract-edit{
     height: 100%;
     width: 100%;
@@ -52,15 +68,95 @@ body{
 }
 .info>h2{
     font-size: 1.5rem;
+    text-align: center;
+}
+.contract-cont{
+    position: relative;
+}
+.contract-number{
+    z-index: 5000;
+    background-color: #008BE1;
+    font-size: 1rem;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 5px;
+}
+
+.info>h4{
+    font-size: 1rem;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .info, .checkbox{
     /* margin: auto; */
+    
+}
+.tipo{
+    padding-left: 10px;
+    background-color: #eeeeffb0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.tipo>select{
+    width: 100px;
+}
+
+.tipo>h2, .estado>h2{
+    font-size: 1rem;
+}
+.estado{
+    margin-right:-10px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeeff;
+    width: 100px;
+    right: 0;
 
 }
 .contract-edit{
+    display: flex;
     transform: rotateX(180deg);
-    background-color: white;
+    background-color: #eeeeff;
+}
+.contract-edit>.info{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.ok-cont{
+    width: 100px;
+    background-color: #eeeeff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+.ok-cont>button{
+    width: 50px;
+    outline: none;
+    border: none;
+}
+.editInfo{
+    width: 100%;
+    height: 100%;
+    text-overflow: ellipsis;
 }
 .contract.flip{
     transform: rotateX(180deg);
@@ -70,13 +166,48 @@ body{
     display: flex;
     justify-content: space-between;
 }
+#filterTags{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+#filterTags>li{
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tagA{
+    background-color: #7e006d;
+}
+.tagB{
+    background-color: #007e5e;
+}
+.tagC{
+    background-color: #e44c1e;
+}
+.tagD{
+    background-color: #19a0c2;
+}
+.clearFilters{
+    font-size: 1rem;
+    color: #0c0c5e;
+    font-weight: bold;
+    border-bottom: 2px solid #0c0c5e;
+}
+.clearFilters:hover{
+    cursor: pointer;
+}
 .contracts-container{
     display: flex;
     flex-direction: column;
     background-color: white;
     width: 100%;
     margin: auto;
-    margin-top: 100px;
 }
 .contract:nth-child(odd) {
 
@@ -86,7 +217,12 @@ body{
 
 }
 
-.contracts-add{
+#contracts-add{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    height: 300px;
+    width: 80%;
     margin: auto;
 }
 

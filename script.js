@@ -4,28 +4,36 @@ const contracts = [
         name: 'Compumundo',
         type: 'A',
         info: 'Lorem ipsum dolor sit amet.',
-        id: 1
+        id: 1,
+        created: '02-10-2021 at 14:05',
+        edited: ''
     
     },
     {
         name: 'Hiper',
         type: 'B',
         info: 'Lorem, ipsum dolor.',
-        id: 2
+        id: 2,
+        created: '02-10-2021 at 14:05',
+        edited: ''
     
     },
     {
         name: 'Mega',
         type: 'C',
         info: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, repellat.',
-        id: 3
+        id: 3,
+        created: '02-10-2021 at 14:05',
+        edited: ''
     
     },
     {
         name: 'Red',
         type: 'D',
         info: 'Lorem ipsum dolor sit amet consectetur.',
-        id: 4
+        id: 4,
+        created: '02-10-2021 at 14:05',
+        edited: ''
     
     }
 
@@ -34,56 +42,73 @@ const contracts = [
 let idCount = 4;
 
 class Contract {
-    constructor (name, type, info, id) {
+    constructor (name, type, info, id, created, edited) {
         this.name = name;
         this.type = type;
         this.info = info;
         this.id = id;
+        this.created = created;
+        this.edited = edited;
     }
 }
 
-const addContractBtn = document.getElementById('addContract')
-const inputName = document.getElementById('inputName')
-const inputType = document.getElementById('inputType')
-const inputInfo = document.getElementById('inputInfo')
+let contractNumber = 0;
 
 function renderContracts(arrayRender){
-
+    contractNumber = 0;
     $("#contracts").html('')
-
+    
     arrayRender.forEach(contract=>{
+        contractNumber +=1;
         let listItem = document.createElement('li');
         listItem.innerHTML = 
         `
-        <div class="contract" id="contract-${contract.id}">
+        <div className="contract-cont">
+            <h3 class="contract-number" >${contractNumber}</h3>
+            <div class="contract" id="contract-${contract.id}">
                     <div class="contract-main">
                         <div class="info">
-                            <h3>${contract.id}</h3>
-                            <h2>${contract.name}</h2>
-                            <i id="type-${contract.id}">${contract.type}</i>
-                            <p>${contract.info}</p>
-                        </div>
-                        <div class="checkbox" id="checkbox-${contract.id}">
-                            <input type="checkbox">
-                        </div>
-                    </div>
-                    
-                    <div class="contract-edit">
-                        <div class="info">
-                            <input type="text" id="inputName-${contract.id}" value="${contract.name}" placeholder="${contract.name}"></input>
-                            <select id="inputType-${contract.id}" name="types">
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="C">C</option>
-                                <option value="D">D</option>
-                            </select>
-                            <input type="text" id="inputInfo-${contract.id}" value="${contract.info}"></input>
-                            <div id="ok-${contract.id}-cont"></div>
-                        </div>
-                    </div>
-                </div>
-        `
+                                <h2>${contract.name}</h2>
+                                <h4 id="type-${contract.id}">${contract.type}</h4>
+                                <p>${contract.info}</p>
+                                <div class="fecha">
+                                    <div class="created">
+                                        <i>created: ${contract.created}</i>
+                                    </div>
+                                    <div id="lastEdited-${contract.id}"></div>
 
+                                </div>
+                            </div>
+                            <div class="checkbox" id="checkbox-${contract.id}">
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        
+                        <div class="contract-edit">
+                            <div class="info">
+                                edit name:
+                                <input type="text" id="inputName-${contract.id}" value="${contract.name}" placeholder="${contract.name}"></input>
+                                edit type:
+                                <select id="inputType-${contract.id}" name="types">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                                edit info:
+                                <input type="text" class="editInfo" id="inputInfo-${contract.id}" value="${contract.info}"></input>
+                                </div>
+                            <div class="ok-cont" id="ok-${contract.id}-cont">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+        </div>
+        `
+        
+
+        
 
         let editItem = document.createElement('span');
         editItem.classList.add('material-icons', 'editIcon')
@@ -110,25 +135,72 @@ function renderContracts(arrayRender){
             acceptEditContract(contract.id)
         })
 
+        let cancelItem = document.createElement('button');
+        cancelItem.classList.add('cancel')
+        cancelItem.id = `cancel-${contract.id}`
+        cancelItem.innerText = `cancel`
+
+        cancelItem.addEventListener('click', ()=>{
+            cancelEditContract(contract.id)
+        })
 
         $("#contracts").append(listItem)
+        
+        switch (contract.type){
+            case 'A':
+            $(`#type-${contract.id}`).addClass('tagA')
+            break;
+            case 'B':
+            $(`#type-${contract.id}`).addClass('tagB')
+            break;
+            case 'C':
+            $(`#type-${contract.id}`).addClass('tagC')
+            break;
+            case 'D':
+            $(`#type-${contract.id}`).addClass('tagD')
+            break;
+        }
+        
+        
+        let lastEdited = document.createElement('i');
+        lastEdited.innerText = `last edited: ${contract.edited}`
+        if(contract.edited){
+            $(`#lastEdited-${contract.id}`).append(lastEdited)
+
+        }
+
+        
+
         $(`#checkbox-${contract.id}`).append(deleteItem)
         $(`#checkbox-${contract.id}`).append(editItem)
         $(`#ok-${contract.id}-cont`).append(okItem)
+        $(`#ok-${contract.id}-cont`).append(cancelItem)
         
     })
 }
+
+const addContractBtn = document.getElementById('addContract')
+const inputName = document.getElementById('inputName')
+const inputType = document.getElementById('inputType')
+const inputInfo = document.getElementById('inputInfo')
+
 addContractBtn.addEventListener('click', ()=>{
 
-        addContract()
-        clearInputs();
-        renderContracts()
+        addContract(inputName, inputType, inputInfo)
+
+        renderContracts(contracts)
 })
 
 
-function addContract(){
+function addContract(name, type, info){
     idCount +=1;
-    contracts.push(new Contract (inputName.value, inputType.value, inputInfo.value, idCount));
+    if( !name.value.trim() == '' && !type.value.trim() == '' && !info.value.trim() == ''){
+        contracts.push(new Contract (name.value, type.value, info.value, idCount, getDate()));
+        clearInputs();
+    }else{
+        console.log('mal');
+    }
+
 }
 function clearInputs(){
     inputName.value = '';
@@ -145,17 +217,29 @@ function editContract(e, type){
  
 function acceptEditContract(e){
     let contractToEdit = contracts.find(contract=> contract.id === e);
-    contractToEdit.name =  $(`#inputName-${e}`).val()
-    contractToEdit.type =  $(`#inputType-${e}`).val()
-    contractToEdit.info =  $(`#inputInfo-${e}`).val()
-    setTimeout(()=>{
-        clearFiltersFn()
-        renderContracts(contracts)
-    },200)
-    $(`#contract-${e}`).removeClass('flip')
+  
+
+    if(!$(`#inputName-${e}`).val().trim() == '' && !$(`#inputType-${e}`).val().trim() == '' && !$(`#inputInfo-${e}`).val().trim() == ''){
+
+        contractToEdit.name =  $(`#inputName-${e}`).val();
+        contractToEdit.type =  $(`#inputType-${e}`).val();
+        contractToEdit.info =  $(`#inputInfo-${e}`).val();
+        contractToEdit.edited = getDate();
+    
+        
+        setTimeout(()=>{
+            clearFiltersFn()
+            renderContracts(contracts)
+        },200);
+        $(`#contract-${e}`).removeClass('flip');
+    }
+
+}
+
+function cancelEditContract(e){
+    $(`#contract-${e}`).removeClass('flip');
 }
  
-
 function deleteContract(e){
     let contractToDelete = contracts.find(contract=> contract.id === e);
     let indexContract = contracts.indexOf(contractToDelete);
@@ -188,7 +272,22 @@ function addTag(e){
     filterTags.innerHTML = ''
 
     let tag = document.createElement('li')
+    switch (e){
+        case 'A':
+        tag.classList.add('tagA')
+        break;
+        case 'B':
+        tag.classList.add('tagB')
+        break;
+        case 'C':
+        tag.classList.add('tagC')
+        break;
+        case 'D':
+        tag.classList.add('tagD')
+        break;
+    }
     let clearFilters = document.createElement('h3')
+    clearFilters.classList.add('clearFilters')
 
 
     clearFilters.addEventListener('click',()=>{
@@ -207,5 +306,16 @@ function clearFiltersFn(){
     renderContracts(contracts)
     filterTypes.value = 'Filtrar'
 }
+function getDate(){
+    let currentDate = new Date()
 
+    let day = currentDate.getDate()
+    let month = currentDate.getMonth() + 1
+    let year = currentDate.getFullYear()
+
+    let minutes = currentDate.getMinutes()
+    let hour = currentDate.getHours();
+
+    return(`${day}-${month}-${year} at ${hour}:${minutes}`);
+}
 renderContracts(contracts)
