@@ -5,6 +5,7 @@
 
 body{
     width: 100vw;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
 }
@@ -29,7 +30,6 @@ nav>img{
 
 #contracts{
     padding-left: 20px;
-    padding-right: 20px;
 }
 .contract{
     border-left: 5px solid #008BE1;
@@ -40,17 +40,16 @@ nav>img{
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 200px;
+    height: 250px;
     margin-bottom: 30px;
     transform-style: preserve-3d;
-	transition: transform .2s ease, opacity .2s ease;
+	transition: transform .3s ease, opacity .2s ease;
 }
 .contract.deleted{
     opacity: 0;
 }
 .contract-main{
     display: flex;
-    /* justify-content: space-around; */
 }
 .checkbox{
     width: 100px;
@@ -58,6 +57,7 @@ nav>img{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    padding-right: 20px;
     background-color: #eeeeff;
 }
 
@@ -73,13 +73,17 @@ nav>img{
     width: 70%;
 }
 .info>h2{
+    margin-top: 10px;
     font-size: 1.5rem;
     text-align: center;
 }
+
 .contract-cont{
+    width: 100%;
     position: relative;
 }
 .contract-number{
+    position: absolute;
     z-index: 5000;
     background-color: #008BE1;
     font-size: 1rem;
@@ -90,8 +94,7 @@ nav>img{
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    left: 5px;
+    left: -15px;
 }
 
 .info>h4{
@@ -105,10 +108,6 @@ nav>img{
     align-items: center;
 }
 
-.info, .checkbox{
-    /* margin: auto; */
-    
-}
 .tipo{
     padding-left: 10px;
     background-color: #eeeeffb0;
@@ -122,6 +121,9 @@ nav>img{
 
 .tipo>h2, .estado>h2{
     font-size: 1rem;
+}
+.fecha-text{
+    font-size: .8rem;
 }
 .estado{
     margin-right:-10px ;
@@ -155,7 +157,6 @@ nav>img{
     padding: 30px;
 }
 .ok-cont>button{
-    /* width: 50px; */
     outline: none;
     border: none;
 }
@@ -168,6 +169,7 @@ nav>img{
     transform: rotateX(180deg);
 }
 .contracts-header{
+    position: relative;
     padding: 20px;
     display: flex;
     justify-content: space-between;
@@ -217,12 +219,11 @@ nav>img{
 }
 
 #contracts-add{
-    background-color: red;
-    display: flex;
-    display: none;
     flex-direction:column;
+    display: none;
     justify-content: space-around;
-    height: 300px;
+    height: 200px;
+    padding: 30px;
     width: 80%;
     margin: auto;
 }
@@ -262,4 +263,49 @@ nav>img{
 .editIcon:hover, .deleteIcon:hover{
     transform: scale(110%);
     cursor: pointer;
+}
+
+footer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    font-size: 1rem;
+    background-color: #000000;
+    color: white;
+}
+
+@media (min-width: 800px) {
+
+    .contract-cont{
+        width: 80%;
+        margin: auto;
+    }
+    nav{
+        height: 200px;
+        background-image: url("https://media.istockphoto.com/photos/business-district-building-street-office-building-picture-id1196323722?k=20&m=1196323722&s=612x612&w=0&h=E46NKnSKIlK0xT4xg9fh0cayFd04a-7yWIMiNizDkgA=");
+        background-size: cover;
+        background-position-y: -200px;
+        background-repeat: no-repeat;
+    }
+    
+    nav>img{    
+        width: 50%;
+        height: 100%;
+        margin-right: auto;
+    }
+    .contracts-header{
+        width: 80%;
+        padding-left: 20px;
+        padding-right: 0;
+        margin: auto;
+    }
+    #contracts-add{
+        width: 70%;
+        margin-bottom: 30px ;
+    }
+    .info>h2{
+        font-size: 2rem;
+    }
 }

@@ -63,7 +63,7 @@ function renderContracts(arrayRender){
         let listItem = document.createElement('li');
         listItem.innerHTML = 
         `
-        <div className="contract-cont">
+        <div class="contract-cont">
             <h3 class="contract-number" >${contractNumber}</h3>
             <div class="contract" id="contract-${contract.id}">
                     <div class="contract-main">
@@ -73,7 +73,7 @@ function renderContracts(arrayRender){
                                 <p>${contract.info}</p>
                                 <div class="fecha">
                                     <div class="created">
-                                        <i>created: ${contract.created}</i>
+                                        <i class="fecha-text">created: ${contract.created}</i>
                                     </div>
                                     <div id="lastEdited-${contract.id}"></div>
 
@@ -164,6 +164,7 @@ function renderContracts(arrayRender){
         
         let lastEdited = document.createElement('i');
         lastEdited.innerText = `last edited: ${contract.edited}`
+        lastEdited.classList.add("fecha-text");
         if(contract.edited){
             $(`#lastEdited-${contract.id}`).append(lastEdited)
 
@@ -357,6 +358,7 @@ $(`#addContractBtn`).click(()=>{
         addingContract = true;
         $(`#addContractBtn`).addClass('rotate')
         $(`#contracts-add`).slideDown()
+        $(`#contracts-add`).css('display', "flex")
 
     }
 })
